@@ -25,8 +25,10 @@ class RedisHandler:
         return self.get_value(key=OPEN_ROOMS_KEY)
 
     def clear(self):
+        """Clear all data from Redis"""
         self.client.flushdb()
 
     def terminate(self):
+        """Clear all data and close Redis"""
         self.clear()
         self.client.close()
