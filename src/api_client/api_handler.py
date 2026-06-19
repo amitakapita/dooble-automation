@@ -8,9 +8,9 @@ class ApiHandler:
     def send_get(self, endpoint: str):
         """ Helper method to send a GET request"""
         url = f"{self.base_url}{endpoint}"
-        return self.session.get(url)
+        return self.session.get(url, timeout=(3,5))
 
     def send_post(self, endpoint: str, payload: dict):
         """ Helper method to send a POST request"""
         url = f"{self.base_url}{endpoint}"
-        return self.session.post(url, json=payload)
+        return self.session.post(url, json=payload, timeout=(3,5))

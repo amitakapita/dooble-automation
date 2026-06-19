@@ -10,7 +10,9 @@ class RedisHandler:
         self.client = redis.Redis(
             host=host,
             port=port,
-            db=db)
+            db=db,
+            socket_timeout=2,
+            socket_connect_timeout=2)
 
     def get_value(self, key):
         """Get value from Redis by key"""

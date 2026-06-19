@@ -50,3 +50,7 @@ class LobbyModule:
         payload = response.json()
 
         assert payload == expected_response.model_dump()
+
+    def create_new_lobby(self, host_name: str):
+        payload = POSTLobbiesSchema(host_name=host_name)
+        return self.post_new_lobby(payload)
