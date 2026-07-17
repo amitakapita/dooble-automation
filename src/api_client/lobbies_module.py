@@ -30,9 +30,10 @@ class LobbyModule:
 
     def validate_room_db_data(self, room_id: str, expected_room: RoomResponse):
         """Validate that the room data in Redis matches the expected room data."""
-        room_db_data = RoomResponse(**self.redis_client.get_room(room_id))
+        raw_room = self.redis_client.get_room(room_id)
+        assert raw_room is not None, f"No room found with room_id = {room_id}"
 
-        assert room_db_data is not None, f"No room found with room_id = {room_id}"
+        room_db_data = RoomResponse(**raw_room)
         assert room_db_data == expected_room, \
             f"Room data mismatch for room_id = {room_id}: expected {expected_room}, got {room_db_data}"
 

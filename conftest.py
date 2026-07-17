@@ -22,6 +22,10 @@ def api_conn():
     api_client = ApiHandler(os.getenv("BASE_URL"))
     yield api_client
 
+@pytest.fixture
+def host_names():
+    return ["Alice", "Bob", "Charlie"]
+
 @pytest.fixture(scope="session")
 def lobby_module(api_conn, redis_conn):
     lobby_module1 = LobbyModule(
